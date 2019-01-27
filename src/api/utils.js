@@ -1,0 +1,1 @@
+export const transformAxiosResponse = ({data}) => data;

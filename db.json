@@ -1,0 +1,25 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Hello world",
+      "body": "Hello world",
+      "comments": [
+        {
+          "timestamp": 1548536766917,
+          "name": "vasia",
+          "text": "Great blog!\nHu-hu-hu...)))"
+        }
+      ]
+    },
+    {
+      "title": "Test post",
+      "body": "This is test post.\nWill be removed in future.",
+      "id": 2
+    }
+  ],
+  "user": {
+    "name": "admin",
+    "password": "admin"
+  }
+}
