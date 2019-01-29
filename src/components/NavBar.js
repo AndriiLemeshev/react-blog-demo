@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import connect from "react-redux/es/connect/connect";
 
 class NavBar extends Component {
     constructor(props) {
@@ -28,6 +29,16 @@ class NavBar extends Component {
                                 <Link className={"nav-link"} to={"/"}>Home <span className="sr-only">(current)</span></Link>
                             </li>
                             <li className="nav-item">
+                                {
+                                    this.props.profile ?
+                                        (<Link className={"nav-link"} to={"/logout"}>Authorithed as {this.props.profile} (logout)</Link>) :
+                                        (<Link className={"nav-link"} to={"/login"}>Login</Link>)
+                                }
+
+
+
+                            </li>
+                            <li className="nav-item">
                                 <Link className={"nav-link"} to={"/about-me"}>About</Link>
                             </li>
                         </ul>
@@ -42,4 +53,8 @@ class NavBar extends Component {
     }
 }
 
-export default NavBar;
+export const mapStateToProps = state => ({
+    profile: state.user.profile
+});
+
+export default connect(mapStateToProps, null)(NavBar);

@@ -9,13 +9,35 @@
           "timestamp": 1548536766917,
           "name": "vasia",
           "text": "Great blog!\nHu-hu-hu...)))"
+        },
+        {
+          "timestamp": 1548795743717,
+          "name": "Me",
+          "text": "Great!"
         }
       ]
     },
     {
       "title": "Test post",
       "body": "This is test post.\nWill be removed in future.",
-      "id": 2
+      "id": 2,
+      "comments": [
+        {
+          "timestamp": 1548794663232,
+          "name": "Me",
+          "text": "Hi!"
+        },
+        {
+          "timestamp": 1548794816285,
+          "name": "Me2",
+          "text": "Hi man!"
+        },
+        {
+          "timestamp": 1548794833909,
+          "name": "Me",
+          "text": "Whats up?"
+        }
+      ]
     }
   ],
   "user": {
