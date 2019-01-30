@@ -7,6 +7,7 @@ import NotFound from "./pages/404";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Details from "./pages/Details";
+import Search from "./pages/Search";
 
 const App = () => (
     <div className="App">
@@ -16,6 +17,8 @@ const App = () => (
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/page/:pageNum" component={Home} />
+                <Route path="/search" component={Search} />
+                <Route path="/search/:pageNum" component={Search} />
                 <Route path="/post/:id" component={Details} />
                 <Route path="/login" exact component={Login} />
                 <Route path="/logout" exact component={Logout} />

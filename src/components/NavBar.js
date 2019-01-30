@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import connect from "react-redux/es/connect/connect";
+import {bindActionCreators} from "redux";
+import { push } from 'connected-react-router';
+
+import {getPosts} from "../reducers/post";
 
 class NavBar extends Component {
     constructor(props) {
@@ -8,10 +12,18 @@ class NavBar extends Component {
         this.state = { query: '' };
 
         this.searchQueryHandler = this.searchQueryHandler.bind(this);
+        this.submitHandler = this.submitHandler.bind(this);
     }
 
     searchQueryHandler = (event) => {
         this.setState({ query: event.target.value })
+    };
+
+    submitHandler = (event) => {
+        event.preventDefault();
+        this.props.actions.getPosts(1, this.state.query);
+        this.setState({ query: '' });
+        this.props.actions.goToSearch();
     };
 
     render() {
@@ -34,15 +46,12 @@ class NavBar extends Component {
                                         (<Link className={"nav-link"} to={"/logout"}>Authorithed as {this.props.profile} (logout)</Link>) :
                                         (<Link className={"nav-link"} to={"/login"}>Login</Link>)
                                 }
-
-
-
                             </li>
                             <li className="nav-item">
                                 <Link className={"nav-link"} to={"/about-me"}>About</Link>
                             </li>
                         </ul>
-                        <form className="form-inline mt-2 mt-md-0">
+                        <form className="form-inline mt-2 mt-md-0" onSubmit={this.submitHandler}>
                             <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" onChange={this.searchQueryHandler} value={this.state.query} />
                             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
@@ -53,8 +62,15 @@ class NavBar extends Component {
     }
 }
 
+export const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators({
+        getPosts,
+        goToSearch: () => push('/search')
+    }, dispatch)
+});
+
 export const mapStateToProps = state => ({
     profile: state.user.profile
 });
 
-export default connect(mapStateToProps, null)(NavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
