@@ -8,11 +8,8 @@ import { logout } from "../reducers/user";
 class Logout extends Component {
 
     componentDidMount() {
-        if (this.props.profile) {
-            this.props.actions.logout();
-        } else {
-            this.props.actions.gotoHome();
-        }
+        this.props.actions.logout();
+        this.props.actions.goToHome();
     }
 
     render() {
@@ -31,7 +28,7 @@ export const mapStateToProps = state => ({
 export const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators({
         logout,
-        gotoHome: () => push('/')
+        goToHome: () => push('/')
     }, dispatch)
 });
 

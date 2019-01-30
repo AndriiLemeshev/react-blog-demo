@@ -5,12 +5,12 @@ import {
     FieldControl,
     Validators
 } from "react-reactive-form";
+import {bindActionCreators} from "redux";
+import connect from "react-redux/es/connect/connect";
 
 import TextInput from "./TextInput";
 import TextArea from "./TextArea";
-import {bindActionCreators} from "redux";
 import {addCommentToPost} from "../reducers/post";
-import connect from "react-redux/es/connect/connect";
 
 const name = {minLength: 2, maxLength: 30};
 const text = {minLength: 3, maxLength: 1000};

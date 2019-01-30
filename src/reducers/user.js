@@ -1,4 +1,4 @@
-import {userAPI} from "../api/user";
+import {read} from "../api/user";
 
 export const LOGIN_REQUEST = 'user/LOGIN_REQUEST';
 export const LOGIN = 'user/LOGIN';
@@ -40,9 +40,16 @@ export const login = (name, password) => dispatch => {
         type: LOGIN_REQUEST
     });
 
-    userAPI
-        .read(name, password)
-        .then(({name}) => dispatch({type: LOGIN, name: name}));
+    return read(name, password)
+        .then(user => {
+            if (user) {
+                dispatch({type: LOGIN, name: user.name});
+            } else {
+                dispatch({type: LOGIN, name: null});
+            }
+
+            return !!user;
+        });
 };
 
 export const logout = () => dispatch => dispatch({type: LOGOUT});

@@ -15,6 +15,7 @@ const App = () => (
         <main role="main" className="flex-shrink-0">
             <Switch>
                 <Route path="/" exact component={Home} />
+                <Route path="/page/:pageNum" component={Home} />
                 <Route path="/post/:id" component={Details} />
                 <Route path="/login" exact component={Login} />
                 <Route path="/logout" exact component={Logout} />

@@ -14,6 +14,11 @@
           "timestamp": 1548795743717,
           "name": "Me",
           "text": "Great!"
+        },
+        {
+          "timestamp": 1548882029134,
+          "name": "HotCat",
+          "text": "fffffffffffr"
         }
       ]
     },
@@ -40,8 +45,11 @@
       ]
     }
   ],
-  "user": {
-    "name": "admin",
-    "password": "admin"
-  }
+  "users": [
+    {
+      "id": 1,
+      "name": "admin",
+      "password": "admin"
+    }
+  ]
 }

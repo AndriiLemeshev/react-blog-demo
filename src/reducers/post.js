@@ -7,7 +7,7 @@ export const GET_POST = 'post/GET_POST';
 
 export const ADD_COMMENT_TO_POST = 'post/ADD_COMMENT_TO_POST';
 
-const POSTS_COUNT = 5;
+export const POSTS_COUNT = 5;
 
 const initialState = {
     posts: [],
