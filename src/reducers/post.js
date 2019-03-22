@@ -1,4 +1,4 @@
-import { find, read, addComment } from "../api/post";
+import { find, read, addComment, create, update, remove } from "../api/post";
 
 export const GET_POSTS_LIST_REQUEST = 'post/GET_POSTS_LIST_REQUEST';
 export const GET_POSTS_LIST = 'post/GET_POSTS_LIST';
@@ -6,6 +6,14 @@ export const GET_POST_REQUEST = 'post/GET_POST_REQUEST';
 export const GET_POST = 'post/GET_POST';
 
 export const ADD_COMMENT_TO_POST = 'post/ADD_COMMENT_TO_POST';
+
+export const CREATE_POST_REQUEST = 'post/CREATE_POST_REQUEST';
+export const CREATE_POST = 'post/CREATE_POST';
+export const UPDATE_POST_REQUEST = 'post/UPDATE_POST_REQUEST';
+export const UPDATE_POST = 'post/UPDATE_POST';
+export const REMOVE_POST_REQUEST = 'post/REMOVE_POST_REQUEST';
+export const REMOVE_POST = 'post/REMOVE_POST';
+
 
 export const POSTS_COUNT = 1;
 
@@ -39,6 +47,7 @@ export default (state = initialState, action) => {
             };
 
         case GET_POST_REQUEST:
+        case REMOVE_POST_REQUEST:
             return {
                 ...state,
                 post: null,
@@ -46,7 +55,16 @@ export default (state = initialState, action) => {
                 loading: true
             };
 
+        case CREATE_POST_REQUEST:
+        case UPDATE_POST_REQUEST:
+            return {
+                ...state,
+                loading: true
+            };
+
         case GET_POST:
+        case CREATE_POST:
+        case UPDATE_POST:
             return {
                 ...state,
                 post: action.post,
@@ -97,4 +115,32 @@ export const addCommentToPost = (postId, name, text) => dispatch => {
             postId,
             post
         }));
+};
+
+export const createPost = post => dispatch => {
+    dispatch({type: CREATE_POST_REQUEST});
+
+    return create(post)
+        .then(post => dispatch({
+            type: CREATE_POST,
+            postId: post.id,
+            post
+        }))
+};
+
+export const updatePost = post => dispatch => {
+    dispatch({type: UPDATE_POST_REQUEST});
+
+    return update(post)
+        .then(post => dispatch({
+            type: UPDATE_POST,
+            postId: post.id,
+            post
+        }))
+};
+
+export const removePost = id => dispatch => {
+    dispatch({type: REMOVE_POST_REQUEST});
+
+    return remove(id).then(() => dispatch({type: REMOVE_POST}))
 };
